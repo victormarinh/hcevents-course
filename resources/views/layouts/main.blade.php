@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
         <!-- Meu CSS -->
-        <link rel="stylesheet" href="./css/styles.css">
+        {{-- <link rel="stylesheet" href="./css/styles.css"> --}}
+        <link href="{{URL::asset('/css/styles.css')}}" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="./js/scripts.js">
         </script>
     </head>
@@ -22,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-lights">
           <div class="collapse navbar-collapse" id="navbar">
             <a href="/" class="navbar-brand">
-              <img src="./img/hdcevents_logo.svg" alt="HDC Events">
+              <img src="{{URL::asset('/img/hdcevents_logo.svg')}}" alt="HDC Events">
             </a>
             <ul class="navbar-nav">
               <li class="nav item">
@@ -38,7 +39,14 @@
           </div>
         </nav>
       </header>
-        @yield('content')
+      <main class="container-fluid">
+        <div class="row">
+          @if(session('msg'))
+            <p class="msg">{{ session('msg') }}</p>
+          @endif
+          @yield('content')
+        </div>
+      </main>
         <footer>
             <p>HDC Events &copy; 2021</p>
         </footer>
